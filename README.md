@@ -25,7 +25,7 @@ $ docker run -ti --privileged --net host -v ~/.ssh:/home/build/.ssh --volume=<pa
 All steps here are inside docker-container
 ```
 build@myhost:~$ cd shared
-build@myhost:~$ mkdir debos-openaia && cd debos-openaia
+build@myhost:~$ mkdir debmodel-openaia && cd debmodel-openaia
 build@myhost:~$ git clone git@github.com:openaia/debos.git
 build@myhost:~$ git clone git@github.com:openaia/debmodel.git
 ```
