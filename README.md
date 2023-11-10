@@ -30,10 +30,15 @@ build@myhost:~$ git clone git@github.com:openaia/debos.git
 build@myhost:~$ git clone git@github.com:openaia/debmodel.git
 ```
 
+Download the artifacts
+```
+build@myhost:~$ cd debos
+build@myhost:~$ ./download-artifacts.sh
+```
+
 Build the openaia models
 ```
 build@myhost:~$ cd debmodel
-build@myhost:~$ ../debos/download-artifacts.sh
 build@myhost:~$ sudo debos recipe.yaml
 ```
 
