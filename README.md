@@ -1,5 +1,7 @@
 # Build OpenAIA Pre-trained Models
 
+Instructions of how to build OpenAIA Model Management at docker host.
+
 ## Pull docker-container
 
 Install the [docker](https://docs.docker.com/engine/install/ubuntu/) and it is recommended to use associated docker image that openaia required.
@@ -28,7 +30,7 @@ build@myhost:~$ git clone git@github.com:openaia/debos.git
 build@myhost:~$ git clone git@github.com:openaia/debmodel.git
 ```
 
-Build the openaia,
+Build the openaia models
 ```
 build@myhost:~$ cd debmodel
 build@myhost:~$ sudo debos --memory=4Gb -c recipe.yaml
