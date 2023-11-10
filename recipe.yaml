@@ -1,13 +1,10 @@
 # recipe.yaml
 
-architecture: amd64
+debosargs: ["--memory=4G"]
+
+architecture: arm64
 
 actions:
-- action: run
-  description: Download artifacts
-  chroot: true
-  script: ../debos/download-artifacts.sh
-
 - action: recipe
   recipe: ../debos/ospack.yaml
 

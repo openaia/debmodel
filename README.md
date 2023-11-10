@@ -33,7 +33,8 @@ build@myhost:~$ git clone git@github.com:openaia/debmodel.git
 Build the openaia models
 ```
 build@myhost:~$ cd debmodel
-build@myhost:~$ sudo debos --memory=4Gb -c recipe.yaml
+build@myhost:~$ ../debos/download-artifacts.sh
+build@myhost:~$ sudo debos recipe.yaml
 ```
 
 ## Program
