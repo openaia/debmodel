@@ -1,0 +1,59 @@
+{{ $architecture := or .architecture "arm64" }}
+{{ $suite := or .suite "bullseye" }}
+{{ $osvideopack := or .osvideopack (printf "osvideopack-%s-%s" $suite $architecture) }}
+{{ $osmodelpack := or .osmodelpack (printf "osmodelpack-%s-%s" $suite $architecture) }}
+
+architecture: {{ $architecture }}
+
+actions:
+  - action: unpack
+    description: Unpack osvideopack
+    file: {{ $osvideopack }}.tar.gz
+
+  - action: apt
+    description: LibSDL2
+    packages:
+      - libsdl2-dev
+
+  - action: apt
+    description: OpenCV
+    packages:
+      - libopencv-dev
+      - libopencv-core-dev
+      - python3-opencv
+      - opencv-doc
+
+  - action: overlay
+    source: overlays/
+    destination: /
+
+  - action: run
+    description: Install libsdl2
+    chroot: true
+    command: |
+      set -e
+
+      dpkg -i /packages/libsdl2/*.deb
+ 
+  - action: run
+    description: Install opencv
+    chroot: true
+    command: |
+      set -e
+
+      dpkg -i /packages/opencv/*.deb
+ 
+  - action: run
+    description: Install Yolov5 Object detection
+    chroot: true
+    command: |
+      set -e
+
+      cp /packages/rknn/librknnrt.so /usr/lib/aarch64-linux-gnu
+      cp /packages/rknn/sdl2-cam /usr/bin
+      cp -rf /packages/rknn/model /home/openaia
+      cp -v /packages/scripts/openaia-od-* /usr/bin
+
+  - action: pack
+    description: Pack into tarball
+    file: {{ $osmodelpack }}.tar.gz

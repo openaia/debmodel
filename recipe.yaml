@@ -1,0 +1,14 @@
+actions:
+- action: debos.actions.Debos
+  recipe: ../debos/ospack.yaml
+
+- action: debos.actions.Debos
+  recipe: ../debos/osvideopack.yaml
+  multi_cam_rkaiq: "true"
+
+- action: debos.actions.Debos
+  recipe: ./osmodelpack.yaml
+
+- action: debos.actions.Debos
+  recipe: ../debos/image.yaml
+  osinpack: "osmodelpack"
