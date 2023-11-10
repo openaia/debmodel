@@ -8,11 +8,13 @@ actions:
 
 - action: recipe
   recipe: ../debos/osvideopack.yaml
-  multi_cam_rkaiq: "true"
+  variables:
+    multi_cam_rkaiq: true
 
 - action: recipe
   recipe: ./osmodelpack.yaml
 
 - action: recipe
   recipe: ../debos/image.yaml
-  osinpack: "osmodelpack"
+  variables:
+    osinpack: osmodelpack
