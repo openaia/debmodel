@@ -39,6 +39,7 @@ build@myhost:~$ ./download-artifacts.sh
 Build the openaia models
 ```
 build@myhost:~$ cd debmodel
+build@myhost:~$ ./download-artifacts.sh
 build@myhost:~$ sudo debos recipe.yaml
 ```
 
