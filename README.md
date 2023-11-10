@@ -40,7 +40,7 @@ Build the openaia models
 ```
 build@myhost:~$ cd debmodel
 build@myhost:~$ ./download-artifacts.sh
-build@myhost:~$ sudo debos recipe.yaml
+build@myhost:~$ sudo debos --memory=4Gb recipe.yaml
 ```
 
 ## Program
