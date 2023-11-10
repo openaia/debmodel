@@ -1,4 +1,9 @@
 actions:
+- action: script
+  path: ../download-artifacts.sh
+  cleanup: true
+  chroot: true
+
 - action: debos.actions.Debos
   recipe: ../debos/ospack.yaml
 
