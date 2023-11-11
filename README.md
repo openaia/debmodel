@@ -7,7 +7,7 @@ Instructions of how to build OpenAIA Model Management at docker host.
 Install the [docker](https://docs.docker.com/engine/install/ubuntu/) and it is recommended to use associated docker image that openaia required.
 
 ```
-$ docker pull ghcr.io/edgeble/easy-build/build-debos:bullseye
+$ docker pull ghcr.io/openaia/easy-build/build-debos:bullseye
 ```
 
 Run the docker with your workspace path,
