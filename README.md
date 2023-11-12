@@ -12,12 +12,12 @@ $ docker pull ghcr.io/openaia/easy-build/build-debos:bullseye
 
 Run the docker with your workspace path,
 ```
-$ docker run -ti --privileged --net host --volume=<path/to/workspace>:/home/build/shared ghcr.io/edgeble/easy-build/build-debos:bullseye
+$ docker run -ti --privileged --net host --volume=<path/to/workspace>:/home/build/shared ghcr.io/openaia/easy-build/build-debos:bullseye
 ```
 
 Run the docker with your workspace path, for sharing host ssh keys
 ```
-$ docker run -ti --privileged --net host -v ~/.ssh:/home/build/.ssh --volume=<path/to/workspace>:/home/build/shared ghcr.io/edgeble/easy-build/build-debos:bullseye
+$ docker run -ti --privileged --net host -v ~/.ssh:/home/build/.ssh --volume=<path/to/workspace>:/home/build/shared ghcr.io/openaia/easy-build/build-debos:bullseye
 ```
 
 ## Build debos
