@@ -4,20 +4,21 @@ Instructions of how to build OpenAIA Model Management at docker host.
 
 ## Pull docker-container
 
-Install the [docker](https://docs.docker.com/engine/install/ubuntu/) and it is recommended to use associated docker image that openaia required.
+Install the [docker](https://docs.docker.com/engine/install/ubuntu/) and use bookworm container images as debos latest
+updates are available in bookworm.
 
 ```
-$ docker pull ghcr.io/openaia/easy-build/build-debos:bullseye
+$ docker pull ghcr.io/openaia/easy-build/build-debos:bookworm
 ```
 
 Run the docker with your workspace path,
 ```
-$ docker run -ti --privileged --net host --volume=<path/to/workspace>:/home/build/shared ghcr.io/openaia/easy-build/build-debos:bullseye
+$ docker run -ti --privileged --net host --volume=<path/to/workspace>:/home/build/shared ghcr.io/openaia/easy-build/build-debos:bookworm
 ```
 
 Run the docker with your workspace path, for sharing host ssh keys
 ```
-$ docker run -ti --privileged --net host -v ~/.ssh:/home/build/.ssh --volume=<path/to/workspace>:/home/build/shared ghcr.io/openaia/easy-build/build-debos:bullseye
+$ docker run -ti --privileged --net host -v ~/.ssh:/home/build/.ssh --volume=<path/to/workspace>:/home/build/shared ghcr.io/openaia/easy-build/build-debos:bookworm
 ```
 
 ## Build debos
