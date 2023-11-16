@@ -1,5 +1,7 @@
 # recipe.yaml
 
+{{ $imgname := or .imgname "dummy" }}
+
 architecture: arm64
 
 actions:
@@ -18,3 +20,4 @@ actions:
   recipe: ../debos/image.yaml
   variables:
     osinpack: osmodelpack
+    imgname: {{ $imgname }}
