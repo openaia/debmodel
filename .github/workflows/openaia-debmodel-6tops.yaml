@@ -1,0 +1,59 @@
+name: Build and Release OpenAIA Debmodel 6TOPS
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    permissions: write-all
+    name: OpenAIA Debmodel 6TOPS runner
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Remote Docker
+      uses: docker/setup-buildx-action@v1
+
+    - name: Clone OpenAIA Debmodel
+      run: |
+        WORK_PATH=$(dirname "${GITHUB_WORKSPACE}")
+        cd $WORK_PATH
+        git clone https://github.com/openaia/debos.git
+        cd debos && ./download-artifacts.sh && cd -
+        cd debmodel && ./download-artifacts.sh && cd -
+        echo "jagan1"
+        cd $WORK_PATH
+        pwd
+        ls -l
+
+    - name: Build OpenAIA Debmodel
+      run: |
+        pwd
+        ls -l
+        WORK_PATH=$(dirname "${GITHUB_WORKSPACE}")
+        cd $WORK_PATH
+
+        docker run --rm --tty \
+          --privileged \
+          --net host \
+          -v ${WORK_PATH}:/home/build/shared \
+          -w /home/build/shared ghcr.io/openaia/easy-build/build-debos:bookworm-v0.1 \
+          sudo debos --memory=4Gb -t imgname:6tops debmodel/recipe.yaml
+
+    - name: Upload output artifacts
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: "v2023.11"
+        body: |
+          ## OpenAIA Debmodel v2023.11 Release
+          - Add 6TOPS NCM support
+          - Edgeble NCM6B, NCM6A
+        files: |
+          $GITHUB_WORKSPACE/debmodel/openaia-bullseye-6tops.bmap
+          $GITHUB_WORKSPACE/debmodel/openaia-bullseye-6tops.img.gz
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
