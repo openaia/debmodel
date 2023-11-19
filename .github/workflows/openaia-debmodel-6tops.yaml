@@ -18,29 +18,31 @@ jobs:
     - name: Set up Remote Docker
       uses: docker/setup-buildx-action@v1
 
+    - name: Set WORK_PATH
+      run: |
+        echo "WORK_PATH=$(dirname "${GITHUB_WORKSPACE}")" >> $GITHUB_ENV
+        echo "WORK_PATH=${{ env.WORK_PATH }}"
+
     - name: Clone OpenAIA Debmodel
       run: |
-        WORK_PATH=$(dirname "${GITHUB_WORKSPACE}")
-        cd $WORK_PATH
+        mkdir ${{ env.WORK_PATH }}/debmodel-openaia
+        cp -rf ${{ env.WORK_PATH }}/debmodel ${{ env.WORK_PATH }}/debmodel-openaia
+        cd ${{ env.WORK_PATH }}/debmodel-openaia
         git clone https://github.com/openaia/debos.git
+
+    - name: Download artifacts
+      run: |
+        cd ${{ env.WORK_PATH }}/debmodel-openaia
         cd debos && ./download-artifacts.sh && cd -
         cd debmodel && ./download-artifacts.sh && cd -
-        echo "jagan1"
-        cd $WORK_PATH
-        pwd
-        ls -l
 
     - name: Build OpenAIA Debmodel
       run: |
-        pwd
-        ls -l
-        WORK_PATH=$(dirname "${GITHUB_WORKSPACE}")
-        cd $WORK_PATH
-
+        cd ${{ env.WORK_PATH }}/debmodel-openaia
         docker run --rm --tty \
           --privileged \
           --net host \
-          -v ${WORK_PATH}:/home/build/shared \
+          -v ${{ env.WORK_PATH }}/debmodel-openaia:/home/build/shared \
           -w /home/build/shared ghcr.io/openaia/easy-build/build-debos:bookworm-v0.1 \
           sudo debos --memory=4Gb -t imgname:6tops debmodel/recipe.yaml
 
@@ -53,7 +55,7 @@ jobs:
           - Add 6TOPS NCM support
           - Edgeble NCM6B, NCM6A
         files: |
-          $GITHUB_WORKSPACE/debmodel/openaia-bullseye-6tops.bmap
-          $GITHUB_WORKSPACE/debmodel/openaia-bullseye-6tops.img.gz
+          ${{ env.WORK_PATH }}/debmodel-openaia/openaia-bullseye-6tops.bmap
+          ${{ env.WORK_PATH }}/debmodel-openaia/openaia-bullseye-6tops.img.gz
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
