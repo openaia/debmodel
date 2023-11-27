@@ -49,12 +49,15 @@ jobs:
     - name: Upload output artifacts
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: "v2023.12-6TOPS-rc1"
+        tag_name: "v2023.12-rc3"
         body: |
-          ## OpenAIA Debmodel v2023.11 Release
-          - Add 6TOPS NCM support
-          - Edgeble NCM6B, NCM6A
-          - Fix for USB3.0 hang
+          ## OpenAIA Debomodel v2023.12-rc3
+          - Add WiFi firmware
+          - Add RTL Ethernet firmware
+          - Add BT firmware
+          - Add linux-next support
+          - Cleanup packages
+          - Add new artifacts for linux-next
         files: |
           ${{ env.WORK_PATH }}/debmodel-openaia/openaia-bullseye-6tops.bmap
           ${{ env.WORK_PATH }}/debmodel-openaia/openaia-bullseye-6tops.img.gz
