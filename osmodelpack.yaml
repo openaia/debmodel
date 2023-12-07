@@ -25,7 +25,7 @@ actions:
 
   - action: overlay
     description: Packages overlay
-    source: overlays/packages
+    source: overlay/packages
     destination: /opt
 
   - action: run
@@ -52,17 +52,17 @@ actions:
 
   - action: overlay
     description: Copy Librknnrt
-    source: overlays/usr/lib
+    source: overlay/usr/lib
     destination: /usr/lib
 
   - action: overlay
     description: Copy Object detection model
-    source: overlays/usr/bin
+    source: overlay/usr/bin
     destination: /usr/bin
 
   - action: overlay
     description: Copy Data annotation
-    source: overlays/home/open
+    source: overlay/home/open
     destination: /home/open
 
   - action: pack
