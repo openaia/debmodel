@@ -1,4 +1,4 @@
 #!/bin/bash
 
-sdl2-cam 1 22 1 model/RK3588/yolov5s-640-640.rknn 640 640 &
-sdl2-cam 1 31 1 model/RK3588/yolov5s-640-640.rknn 640 640 &
+sudo sdl2-cam 1 22 1 model/RK3588/yolov5s-640-640.rknn 640 640 &
+sudo sdl2-cam 1 31 1 model/RK3588/yolov5s-640-640.rknn 640 640 &
