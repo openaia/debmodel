@@ -23,7 +23,7 @@ Install the [docker](https://docs.docker.com/engine/install/ubuntu/) at host.
 
 Build OpenAIA Debmodel for 6TOPS,
 ```
-$ docker run -ti --privileged --net host -v debmodel-openaia:/home/build/shared -w /home/build/shared ghcr.io/openaia/easy-build/build-debos:bookworm-v0.1 sudo debos --memory=4Gb -t imgname:6top debmodel/recipe.yaml
+$ docker run -ti --privileged --net host -v `pwd`:/home/build/shared -w /home/build/shared ghcr.io/openaia/easy-build/build-debos:bookworm-v0.1 sudo debos --memory=8Gb -t imgname:6tops debmodel/recipe.yaml
 ```
 
 ## Program
