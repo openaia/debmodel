@@ -6,8 +6,8 @@ Build instruction for OpenAIA Debmodel image in docker container.
 
 ```
 $ mkdir debmodel-openaia && cd debmodel-openaia
-$ git clone git@github.com:openaia/debos.git
-$ git clone git@github.com:openaia/debmodel.git
+$ git clone git@github.com:edgeble/debos.git
+$ git clone git@github.com:edgeble/debmodel.git
 ```
 
 ## Download artifacts
@@ -23,7 +23,7 @@ Install the [docker](https://docs.docker.com/engine/install/ubuntu/) at host.
 
 Build OpenAIA Debmodel for 6TOPS,
 ```
-$ docker run -ti --privileged --net host -v `pwd`:/home/build/shared -w /home/build/shared ghcr.io/openaia/easy-build/build-debos:bookworm-v0.1 sudo debos --memory=8Gb -t imgname:6tops debmodel/recipe.yaml
+$ docker run -ti --privileged --net host -v `pwd`:/home/build/shared -w /home/build/shared ghcr.io/edgeble/easy-dock/debian:bookworm-v1 sudo debos --memory=8Gb -t imgname:6tops debmodel/recipe.yaml
 ```
 
 ## Program
