@@ -18,6 +18,13 @@ jobs:
     - name: Set up Remote Docker
       uses: docker/setup-buildx-action@v1
 
+    - name: Authenticate Docker Registry
+      run: |
+        echo "Decoded Docker Auth Config:"
+        decoded_config=$(echo -n "${{ secrets.DOCKER_AUTH_CONFIG }}" | base64 --decode)
+        echo "$decoded_config" > $HOME/.docker/config.json
+        cat $HOME/.docker/config.json
+
     - name: Set WORK_PATH
       run: |
         echo "WORK_PATH=$(dirname "${GITHUB_WORKSPACE}")" >> $GITHUB_ENV
@@ -38,20 +45,25 @@ jobs:
 
     - name: Build OpenAIA Debmodel
       run: |
+        sudo apt install qemu-user-static
+        sudo apt install binfmt-support
         cd ${{ env.WORK_PATH }}/debmodel-openaia
         docker run --rm --tty \
           --privileged \
           --net host \
           -v ${{ env.WORK_PATH }}/debmodel-openaia:/home/build/shared \
-          -w /home/build/shared ghcr.io/openaia/easy-build/build-debos:bookworm-v0.1 \
-          sudo debos --memory=4Gb -t imgname:6tops debmodel/recipe.yaml
+          -v /dev:/dev \
+          -e DEBIAN_FRONTEND=noninteractive \
+          -e TERM=xterm-256color \
+          -w /home/build/shared ghcr.io/edgeble/easy-dock/debian:bookworm-v1 \
+          sudo debos --memory=8Gb -t imgname:6tops debmodel/recipe.yaml
 
     - name: Upload output artifacts
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: "v2023.12-rc3"
+        tag_name: "v2024.02-rc1"
         body: |
-          ## OpenAIA Debomodel v2023.12-rc3
+          ## OpenAIA Debomodel v2024.02-rc1
           - Add WiFi firmware
           - Add RTL Ethernet firmware
           - Add BT firmware
@@ -59,6 +71,9 @@ jobs:
           - Cleanup packages
           - Add new artifacts for linux-next
         files: |
+          ${{ env.WORK_PATH }}/debmodel-openaia/ospack-bullseye-arm64.tar.gz
+          ${{ env.WORK_PATH }}/debmodel-openaia/osvideopack-bullseye-arm64.tar.gz
+          ${{ env.WORK_PATH }}/debmodel-openaia/osmodelpack-bullseye-arm64.tar.gz
           ${{ env.WORK_PATH }}/debmodel-openaia/openaia-bullseye-6tops.bmap
           ${{ env.WORK_PATH }}/debmodel-openaia/openaia-bullseye-6tops.img.gz
       env:
