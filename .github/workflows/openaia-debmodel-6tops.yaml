@@ -61,15 +61,13 @@ jobs:
     - name: Upload output artifacts
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: "v2024.02-rc1"
+        tag_name: "build-2"
         body: |
-          ## OpenAIA Debomodel v2024.02-rc1
-          - Add WiFi firmware
-          - Add RTL Ethernet firmware
-          - Add BT firmware
-          - Add linux-next support
-          - Cleanup packages
-          - Add new artifacts for linux-next
+          ## OpenAIA Debomodel Build-2
+          - add model-zoo
+          - drop sdl2-cam
+          - fix download-artifacts
+          - add 6tops hostname
         files: |
           ${{ env.WORK_PATH }}/debmodel-openaia/ospack-bullseye-arm64.tar.gz
           ${{ env.WORK_PATH }}/debmodel-openaia/osvideopack-bullseye-arm64.tar.gz
