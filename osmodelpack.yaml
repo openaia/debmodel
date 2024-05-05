@@ -10,6 +10,22 @@ actions:
     description: Unpack osvideopack
     file: {{ $osvideopack }}.tar.gz
 
+  - action: apt
+    description: Pkg depends
+    packages:
+    - build-essential
+    - cmake
+    - g++-aarch64-linux-gnu
+    - pkg-config
+    - firefox-esr
+
+  - action: apt
+    description: OpenCV
+    packages:
+    - libopencv-dev
+    - libopencv-core-dev
+    - python3-opencv
+
   - action: overlay
     description: Packages overlay
     source: overlay
@@ -21,6 +37,16 @@ actions:
     command: |
       set -e
       dpkg -i /opt/packages/camera-engine-rkaiq_3.0.2_arm64.deb
+
+  - action: overlay
+    description: Copy model-zoo
+    source: prebuilt/model-zoo
+    destination: /opt/model-zoo
+
+  - action: run
+    description: install model-zoo
+    chroot: true
+    script: script/model-zoo.sh
 
   - action: pack
     description: Pack into tarball
