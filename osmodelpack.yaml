@@ -10,22 +10,9 @@ actions:
     description: Unpack osvideopack
     file: {{ $osvideopack }}.tar.gz
 
-  - action: apt
-    description: LibSDL2
-    packages:
-      - libsdl2-dev
-
-  - action: apt
-    description: OpenCV
-    packages:
-      - libopencv-dev
-      - libopencv-core-dev
-      - python3-opencv
-      - opencv-doc
-
   - action: overlay
     description: Packages overlay
-    source: overlay/packages
+    source: overlay
     destination: /opt
 
   - action: run
@@ -33,37 +20,7 @@ actions:
     chroot: true
     command: |
       set -e
-      dpkg -i /opt/camera-engine-rkaiq_3.0.2_arm64.deb
-
-  - action: run
-    description: Install libsdl2
-    chroot: true
-    command: |
-      set -e
-      dpkg -i /opt/libsdl2/*.deb
- 
-  - action: run
-    description: Install opencv
-    chroot: true
-    command: |
-      set -e
-      dpkg -i /opt/opencv/*.deb
-      rm -rfv /opt/*
-
-  - action: overlay
-    description: Copy Librknnrt
-    source: overlay/usr/lib
-    destination: /usr/lib
-
-  - action: overlay
-    description: Copy Object detection model
-    source: overlay/usr/bin
-    destination: /usr/bin
-
-  - action: overlay
-    description: Copy Data annotation
-    source: overlay/home/open
-    destination: /home/open
+      dpkg -i /opt/packages/camera-engine-rkaiq_3.0.2_arm64.deb
 
   - action: pack
     description: Pack into tarball
