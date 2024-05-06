@@ -23,12 +23,12 @@ Install the [docker](https://docs.docker.com/engine/install/ubuntu/) at host.
 
 Build OpenAIA Debmodel for 6TOPS,
 ```
-$ docker run -ti --privileged --net host -v `pwd`:/home/build/shared -w /home/build/shared ghcr.io/edgeble/easy-dock/debian:bookworm-v1 sudo debos --memory=8Gb -t imgname:6tops debmodel/recipe.yaml
+$ docker run -ti --privileged --net host -v `pwd`:/home/build/shared -w /home/build/shared ghcr.io/edgeble/easy-dock/debian:bookworm-v1 sudo debos --memory=8Gb -t buildnr:b0 debmodel/recipe.yaml
 ```
 
 ## Program
 
 We can program microSD or eMMC, assume /dev/sdX is microSD detected in host,
 ```
-$ sudo bmaptool copy --bmap openaia-bullseye-6tops.bmap openaia-bullseye-6tops.img.gz /dev/sdX
+$ sudo bmaptool copy --bmap ncm6b-openaia-deb11-b0.bmap ncm6b-openaia-deb11-b0.img.gz /dev/sdX
 ```
