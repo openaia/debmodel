@@ -56,23 +56,18 @@ jobs:
           -e DEBIAN_FRONTEND=noninteractive \
           -e TERM=xterm-256color \
           -w /home/build/shared ghcr.io/edgeble/easy-dock/debian:bookworm-v1 \
-          sudo debos --memory=8Gb -t imgname:6tops debmodel/recipe.yaml
+          sudo debos --memory=8Gb -t buildnr:b3 debmodel/recipe.yaml
 
     - name: Upload output artifacts
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: "build-2"
+        tag_name: "build-3"
         body: |
-          ## OpenAIA Debomodel Build-2
-          - add model-zoo
-          - drop sdl2-cam
-          - fix download-artifacts
-          - add 6tops hostname
+          ## OpenAIA Debomodel Build-3
+          - add buildnr
+          - fix readme
         files: |
-          ${{ env.WORK_PATH }}/debmodel-openaia/ospack-bullseye-arm64.tar.gz
-          ${{ env.WORK_PATH }}/debmodel-openaia/osvideopack-bullseye-arm64.tar.gz
-          ${{ env.WORK_PATH }}/debmodel-openaia/osmodelpack-bullseye-arm64.tar.gz
-          ${{ env.WORK_PATH }}/debmodel-openaia/openaia-bullseye-6tops.bmap
-          ${{ env.WORK_PATH }}/debmodel-openaia/openaia-bullseye-6tops.img.gz
+          ${{ env.WORK_PATH }}/debmodel-openaia/ncm6b-openaia-deb11-b3.bmap
+          ${{ env.WORK_PATH }}/debmodel-openaia/ncm6b-openaia-deb11-b3.img.gz
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
