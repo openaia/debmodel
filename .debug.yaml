@@ -1,0 +1,10 @@
+{{ $architecture := or .architecture "arm64" }}
+{{ $suite := or .suite "bullseye" }}
+
+architecture: {{ $architecture }}
+
+actions:
+- action: overlay
+  description: Copy root
+  source: overlay/root
+  destination: /root

@@ -48,6 +48,10 @@ actions:
     chroot: true
     script: script/model-zoo.sh
 
+  - action: recipe
+    description: Install desktop
+    recipe: .debug.yaml
+
   - action: pack
     description: Pack into tarball
     file: {{ $osmodelpack }}.tar.gz
