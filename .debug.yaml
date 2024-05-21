@@ -8,3 +8,8 @@ actions:
   description: Copy root
   source: overlay/root
   destination: /root
+
+- action: overlay
+  description: Copy home
+  source: overlay/home/open
+  destination: /home/open
