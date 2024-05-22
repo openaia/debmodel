@@ -13,7 +13,7 @@ wget -qP prebuilt "https://github.com/openaia/u-boot/releases/download/$U_BOOT_R
 wget -qP prebuilt "https://github.com/openaia/u-boot/releases/download/$U_BOOT_REL/u-boot.itb"
 
 echo "=== Downloading model-zoo ==="
-cd prebuilt &&  git clone https://github.com/edgeble/model-zoo.git && cd -
+cd prebuilt &&  git clone https://github.com/openaia/model-zoo.git && cd -
 
 find prebuilt/
 echo "=== Remember to remove prebuilt directory for new aritfacts to load ==="
