@@ -17,10 +17,10 @@ actions:
     multi_cam_rkaiq: true
 
 - action: recipe
-  recipe: ./osmodelpack.yaml
+  recipe: ./modelpack.yaml
 
 - action: recipe
   recipe: ../debos/image.yaml
   variables:
-    osinpack: osmodelpack
+    osinpack: modelpack
     buildnr: {{ $buildnr }}
