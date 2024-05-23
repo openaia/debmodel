@@ -17,7 +17,6 @@ actions:
     - cmake
     - g++-aarch64-linux-gnu
     - pkg-config
-    - firefox-esr
 
   - action: apt
     description: OpenCV
@@ -30,13 +29,6 @@ actions:
     description: Packages overlay
     source: overlay
     destination: /opt
-
-  - action: run
-    description: Install camera-engine-rkaiq
-    chroot: true
-    command: |
-      set -e
-      dpkg -i /opt/packages/camera-engine-rkaiq_3.0.2_arm64.deb
 
   - action: overlay
     description: Copy model-zoo
