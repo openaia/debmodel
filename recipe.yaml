@@ -12,9 +12,7 @@ actions:
     hostname: {{ $imgname }}
 
 - action: recipe
-  recipe: ../debos/osvideopack.yaml
-  variables:
-    multi_cam_rkaiq: true
+  recipe: ../debos/mediapack.yaml
 
 - action: recipe
   recipe: ./modelpack.yaml

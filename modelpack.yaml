@@ -1,14 +1,14 @@
 {{ $architecture := or .architecture "arm64" }}
 {{ $suite := or .suite "bullseye" }}
-{{ $osvideopack := or .osvideopack (printf "osvideopack-%s-%s" $suite $architecture) }}
+{{ $mediapack := or .mediapack (printf "mediapack-%s-%s" $suite $architecture) }}
 {{ $modelpack := or .modelpack (printf "modelpack-%s-%s" $suite $architecture) }}
 
 architecture: {{ $architecture }}
 
 actions:
   - action: unpack
-    description: Unpack osvideopack
-    file: {{ $osvideopack }}.tar.gz
+    description: Unpack mediapack
+    file: {{ $mediapack }}.tar.gz
 
   - action: apt
     description: Pkg depends
